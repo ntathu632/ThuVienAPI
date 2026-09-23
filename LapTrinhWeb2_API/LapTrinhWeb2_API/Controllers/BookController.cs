@@ -152,5 +152,24 @@ namespace LapTrinhWeb2_API.Controllers
             }
             return Ok(addBookRequestDTO);
         }
+
+        [HttpDelete("delete-book-by-id/{id:int}")]
+        public IActionResult DeleteBookById(int id)
+        {
+            var bookDomain = _dbContext.Books.FirstOrDefault(x => x.Id == id);
+            if (bookDomain == null)
+            {
+                return NotFound();
+            }
+            var existingBookAuthors = _dbContext.Book_Authors.Where(x => x.BookId == id).ToList();
+            if (existingBookAuthors != null && existingBookAuthors.Count > 0)
+            {
+                _dbContext.Book_Authors.RemoveRange(existingBookAuthors);
+                _dbContext.SaveChanges();
+            }
+            _dbContext.Books.Remove(bookDomain);
+            _dbContext.SaveChanges();
+            return Ok(bookDomain);
+        }
     }
 }
