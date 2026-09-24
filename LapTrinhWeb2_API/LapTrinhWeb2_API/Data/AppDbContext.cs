@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Internal;
 using LapTrinhWeb2_API.Models.Domain;
 
-namespace LapTrinhWeb2_API
+namespace LapTrinhWeb2_API.Data
 {
     public class AppDbContext: DbContext
     {

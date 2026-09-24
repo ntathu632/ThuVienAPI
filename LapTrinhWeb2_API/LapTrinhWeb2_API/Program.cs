@@ -1,4 +1,5 @@
-using LapTrinhWeb2_API;
+using LapTrinhWeb2_API.Data;
+using LapTrinhWeb2_API.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +15,10 @@ builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
+//Khai báo Repository
+builder.Services.AddScoped<IBookRepository, SQLBookRepository>();
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
