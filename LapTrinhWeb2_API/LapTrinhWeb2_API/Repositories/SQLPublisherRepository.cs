@@ -1,7 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using LapTrinhWeb2_API.Data;
 using LapTrinhWeb2_API.Models.Domain;
 using LapTrinhWeb2_API.Models.DTO;
-using LapTrinhWeb2_API.Data;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace LapTrinhWeb2_API.Repositories
 {
@@ -72,6 +73,26 @@ namespace LapTrinhWeb2_API.Repositories
                 _dbContext.SaveChanges();
             }
             return null;
+        }
+
+        public List<BookWithAuthorAndPublisherDTO> GetBooksByPublisherId(int id)
+        {
+            var booksOfPublisher = _dbContext.Books.Where(b=> b.PublisherId == id).Select(book => new BookWithAuthorAndPublisherDTO()
+            {
+                Id = book.Id,
+                Title = book.Title,
+                Description = book.Description,
+                IsRead = book.IsRead,
+                DateRead = book.DateRead,
+                Rate = book.Rate,
+                Genre = book.Genre,
+                CoverUrl = book.CoverUrl,
+                DateAdded = book.DateAdded,
+                PublisherName = book.Publisher.Name,
+                AuthorNames = book.Book_Authors.Select(n => n.Author.FullName).ToList()
+            }).ToList();
+            return booksOfPublisher;
+
         }
     }
 }

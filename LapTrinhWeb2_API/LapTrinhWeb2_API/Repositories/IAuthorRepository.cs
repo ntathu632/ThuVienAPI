@@ -10,5 +10,6 @@ namespace LapTrinhWeb2_API.Repositories
         AddAuthorRequestDTO AddAuthor(AddAuthorRequestDTO addAuthorRequestDTO);
         AuthorNoIdDTO UpdateAuthorById(int id, AuthorNoIdDTO authorNoIdDTO);
         Authors? DeleteAuthorById(int id);
+        List<BookWithAuthorAndPublisherDTO> GetBookByAuthorId(int id);
     }
 }

@@ -50,5 +50,12 @@ namespace LapTrinhWeb2_API.Controllers
             var authorDelete = _authorRepository.DeleteAuthorById(id);
             return Ok();
         }
+
+        [HttpGet("{id}/books")]
+        public IActionResult GetBooksByAuthorId(int id)
+        {
+            var booksOfAuthor = _authorRepository.GetBookByAuthorId(id);
+            return Ok(booksOfAuthor);
+        }
     }
 }
