@@ -18,6 +18,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 //Khai báo Repository
 builder.Services.AddScoped<IAuthorRepository, SQLAuthorRepository>();
 builder.Services.AddScoped<IBookRepository, SQLBookRepository>();
+builder.Services.AddScoped<IPublisherRepository, SQLPublisherRepository>();
 
 var app = builder.Build();
 
