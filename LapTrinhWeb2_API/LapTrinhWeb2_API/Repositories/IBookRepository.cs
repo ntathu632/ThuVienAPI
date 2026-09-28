@@ -5,7 +5,11 @@ namespace LapTrinhWeb2_API.Repositories
 {
     public interface IBookRepository
     {
-        List<BookWithAuthorAndPublisherDTO> GetAllBooks(string? filterOn = null, string? filterQuery = null);
+        List<BookWithAuthorAndPublisherDTO> GetAllBooks(
+            string? filterOn = null,
+            string? filterQuery = null,
+            string? sortBy = null,
+            bool isAscending = true);
         BookWithAuthorAndPublisherDTO GetBookById(int id);
         addBookRequestDTO AddBook(addBookRequestDTO addBookRequestDTO);
         addBookRequestDTO? UpdateBookById(int id, addBookRequestDTO bookDTO);
