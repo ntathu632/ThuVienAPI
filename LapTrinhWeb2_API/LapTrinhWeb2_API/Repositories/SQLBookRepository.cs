@@ -13,7 +13,7 @@ namespace LapTrinhWeb2_API.Repositories
             _dbContext = dbContext;
         }
 
-        public List<BookWithAuthorAndPublisherDTO> GetAllBooks(string? filterOn = null, string? filterQuery = null, string? sortBy = null, bool isAscending = true)
+        public List<BookWithAuthorAndPublisherDTO> GetAllBooks(string? filterOn = null, string? filterQuery = null, string? sortBy = null, bool isAscending = true, int pageNumber = 1, int pageSize = 1000)
         {
             var allBooks = _dbContext.Books.Select(Books => new BookWithAuthorAndPublisherDTO()
             {
@@ -47,7 +47,9 @@ namespace LapTrinhWeb2_API.Repositories
                         : allBooks.OrderByDescending(x => x.Title);
                 }
             }
-            return allBooks.ToList();
+            //pagination
+            var skipResults = (pageNumber - 1) * pageSize;
+            return allBooks.Skip(skipResults).Take(pageSize).ToList();
         }
 
         public BookWithAuthorAndPublisherDTO GetBookById(int id)
