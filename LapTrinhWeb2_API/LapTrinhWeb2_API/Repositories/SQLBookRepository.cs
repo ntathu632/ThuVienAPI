@@ -13,7 +13,7 @@ namespace LapTrinhWeb2_API.Repositories
             _dbContext = dbContext;
         }
 
-        public List<BookWithAuthorAndPublisherDTO> GetAllBooks()
+        public List<BookWithAuthorAndPublisherDTO> GetAllBooks(string? filterOn = null, string? filterQuery = null)
         {
             var allBooks = _dbContext.Books.Select(Books => new BookWithAuthorAndPublisherDTO()
             {
@@ -27,8 +27,17 @@ namespace LapTrinhWeb2_API.Repositories
                 CoverUrl = Books.CoverUrl,
                 PublisherName = Books.Publisher.Name,
                 AuthorNames = Books.Book_Authors.Select(n => n.Author.FullName).ToList()
-            }).ToList();
-            return allBooks;
+            }).AsQueryable();
+            //filtering
+            if (string.IsNullOrWhiteSpace(filterOn) == false &&
+                string.IsNullOrWhiteSpace(filterQuery) == false)
+            {
+                if (filterOn.Equals("title", StringComparison.OrdinalIgnoreCase))
+                {
+                    allBooks = allBooks.Where(x => x.Title.Contains(filterQuery));
+                }
+            }
+            return allBooks.ToList();
         }
 
         public BookWithAuthorAndPublisherDTO GetBookById(int id)

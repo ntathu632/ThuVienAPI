@@ -27,10 +27,10 @@ namespace LapTrinhWeb2_API.Controllers
 
         //GET: http://localhost:5000/api/get-all-books
         [HttpGet("Get-all-books")]
-        public IActionResult GetAll()
+        public IActionResult GetAll([FromQuery] string? filterOn, [FromQuery] string? filterQuery)
         {
             // su dung reposity pattern 
-            var allBooks = _bookRepository.GetAllBooks();
+            var allBooks = _bookRepository.GetAllBooks(filterOn, filterQuery);
             return Ok(allBooks);
         }
 
