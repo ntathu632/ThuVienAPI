@@ -43,6 +43,12 @@ namespace LapTrinhWeb2_API.Repositories
             }
             return null;
         }
+
+        public bool PublisherNameExists(string name)
+        {
+            return _dbContext.Publishers.Any(p => p.Name == name);
+        }
+
         public AddPublisherRequestDTO AddPublisher(AddPublisherRequestDTO addPublisherRequestDTO)
         {
             var publisherDomainModel = new Publishers
@@ -75,6 +81,7 @@ namespace LapTrinhWeb2_API.Repositories
             return null;
         }
 
+        
         public List<BookWithAuthorAndPublisherDTO> GetBooksByPublisherId(int id)
         {
             var booksOfPublisher = _dbContext.Books.Where(b=> b.PublisherId == id).Select(book => new BookWithAuthorAndPublisherDTO()

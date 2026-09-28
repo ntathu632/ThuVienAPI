@@ -10,6 +10,7 @@ namespace LapTrinhWeb2_API.Repositories
         AddPublisherRequestDTO AddPublisher(AddPublisherRequestDTO addPublisherRequestDTO);
         PublisherNoIdDTO UpdatePublisherById(int id, PublisherNoIdDTO publisherNoIdDTO);
         Publishers? DeletePublisherById(int id);
+        bool PublisherNameExists(string name);
 
         List<BookWithAuthorAndPublisherDTO> GetBooksByPublisherId(int id);
     }

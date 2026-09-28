@@ -34,9 +34,14 @@ namespace LapTrinhWeb2_API.Controllers
         [HttpPost("add - publisher")]
         public IActionResult AddPublisher([FromBody] AddPublisherRequestDTO addPublisherRequestDTO)
         {
+            if (_publisherRepository.PublisherNameExists(addPublisherRequestDTO.Name))
+            {
+                return BadRequest("Publisher Name đã tồn tại");
+            }
             var publisherAdd = _publisherRepository.AddPublisher(addPublisherRequestDTO);
             return Ok(publisherAdd);
         }
+
         [HttpPut("update-publisher-by-id/{id}")]
         public IActionResult UpdatePublisherById(int id, [FromBody] PublisherNoIdDTO publisherDTO)
         {

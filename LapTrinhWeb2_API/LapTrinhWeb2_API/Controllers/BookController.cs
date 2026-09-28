@@ -47,6 +47,10 @@ namespace LapTrinhWeb2_API.Controllers
         //[Authorize(Roles = "Write")]
         public IActionResult AddBook([FromBody] addBookRequestDTO addBookRequestDTO)
         {
+            if (!_bookRepository.PublisherExists(addBookRequestDTO.PublisherId))
+            {
+                return BadRequest("PublisherId không tồn tại");
+            }
             if (ValidateAddBook(addBookRequestDTO))
             {
                 var bookAdd = _bookRepository.AddBook(addBookRequestDTO);

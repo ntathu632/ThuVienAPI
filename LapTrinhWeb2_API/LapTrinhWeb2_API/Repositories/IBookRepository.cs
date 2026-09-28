@@ -10,5 +10,6 @@ namespace LapTrinhWeb2_API.Repositories
         addBookRequestDTO AddBook(addBookRequestDTO addBookRequestDTO);
         addBookRequestDTO? UpdateBookById(int id, addBookRequestDTO bookDTO);
         Books? DeleteBookById(int id);
+        bool PublisherExists(int publisherId);
     }
 }

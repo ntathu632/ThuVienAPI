@@ -4,6 +4,7 @@ using LapTrinhWeb2_API.Models.DTO;
 using LapTrinhWeb2_API.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI_simple.CustomActionFilter;
 
 namespace LapTrinhWeb2_API.Controllers
 {
@@ -31,13 +32,20 @@ namespace LapTrinhWeb2_API.Controllers
             var authorWithId = _authorRepository.GetAuthorById(id);
             return Ok(authorWithId);
         }
+
         [HttpPost("add-author")]
+        [ValidateModel]
         public IActionResult AddAuthors([FromBody] AddAuthorRequestDTO
        addAuthorRequestDTO)
         {
+            if (addAuthorRequestDTO == null)
+            {
+                return BadRequest("Author data is null.");
+            }
             var authorAdd = _authorRepository.AddAuthor(addAuthorRequestDTO);
             return Ok();
         }
+
         [HttpPut("update-author-by-id/{id}")]
         public IActionResult UpdateBookById(int id, [FromBody] AuthorNoIdDTO authorDTO)
         {

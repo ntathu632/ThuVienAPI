@@ -1,7 +1,10 @@
-﻿namespace LapTrinhWeb2_API.Models.DTO
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace LapTrinhWeb2_API.Models.DTO
 {
     public class AddPublisherRequestDTO
     {
+        
         public string Name { set; get; }
     }
 }

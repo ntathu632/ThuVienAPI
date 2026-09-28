@@ -50,6 +50,12 @@ namespace LapTrinhWeb2_API.Repositories
             }).FirstOrDefault();
             return bookWithIdDTO;
         }
+
+        public bool PublisherExists(int publisherId)
+        {
+            return _dbContext.Publishers.Any(p => p.Id == publisherId);
+        }
+
         public addBookRequestDTO AddBook(addBookRequestDTO addBookRequestDTO)
         {
             //map DTO to Domain Model

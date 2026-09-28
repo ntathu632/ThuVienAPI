@@ -7,6 +7,7 @@ namespace LapTrinhWeb2_API.Models.DTO
     {
         [Required]
         [MinLength(10)]
+        [RegularExpression(@"^[a-zA-Z0-9À-ỹ\s]+$", ErrorMessage = "Title không được chứa ký tự đặc biệt")]
         public string? Title { get; set; }
         public string? Description { get; set; }
         public bool IsRead { get; set; }
