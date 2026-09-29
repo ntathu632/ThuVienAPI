@@ -27,6 +27,7 @@ namespace LapTrinhWeb2_API.Controllers
 
         //GET: http://localhost:5000/api/get-all-books
         [HttpGet("Get-all-books")]
+        [Authorize(Roles ="Read")]
         public IActionResult GetAll([FromQuery] string? filterOn, [FromQuery] string? filterQuery, [FromQuery] string? sortBy, [FromQuery] bool isAscending, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 100)
         {
             // su dung reposity pattern 
@@ -36,6 +37,7 @@ namespace LapTrinhWeb2_API.Controllers
 
         [HttpGet]
         [Route("get-book-by-id/{id:int}")]
+        [Authorize(Roles = "Read")]
         public IActionResult GetBookById([FromRoute] int id)
         {
             var bookWithIdDTO = _bookRepository.GetBookById(id);
@@ -44,7 +46,7 @@ namespace LapTrinhWeb2_API.Controllers
 
         [HttpPost("add-book")]
         [ValidateModel]
-        //[Authorize(Roles = "Write")]
+        [Authorize(Roles = "Write")]
         public IActionResult AddBook([FromBody] addBookRequestDTO addBookRequestDTO)
         {
             if (!_bookRepository.PublisherExists(addBookRequestDTO.PublisherId))
@@ -62,6 +64,7 @@ namespace LapTrinhWeb2_API.Controllers
         
 
         [HttpPut("update-book-by-id/{id}")]
+        [Authorize(Roles ="Write")]
         public IActionResult UpdateBookById(int id, [FromBody] addBookRequestDTO bookDTO)
         {
             var updateBook = _bookRepository.UpdateBookById(id, bookDTO);
@@ -69,6 +72,7 @@ namespace LapTrinhWeb2_API.Controllers
         }
 
         [HttpDelete("delete-book-by-id/{id}")]
+        [Authorize(Roles = "Write")]
         public IActionResult DeleteBookById(int id)
         {
             var deleteBook = _bookRepository.DeleteBookById(id);
@@ -77,8 +81,9 @@ namespace LapTrinhWeb2_API.Controllers
 
         private bool ValidateAddBook(addBookRequestDTO addBookRequestDTO)
         {
+            if (addBookRequestDTO == null)
             {
-                ModelState.AddModelError(nameof(addBookRequestDTO), $"Please add book data"); 
+                ModelState.AddModelError(nameof(addBookRequestDTO), $"Please add book data");
                 return false;
             }
             // kiem tra Description NotNull

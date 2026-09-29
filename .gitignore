@@ -482,3 +482,6 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# Tai lieu huong dan, khong push len git
+LT WEB API P89.pdf
