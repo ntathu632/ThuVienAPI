@@ -1,0 +1,8 @@
+2026-09-30 02:12:21.755 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7233/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-09-30 02:12:21.802 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7233/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 46.304ms
+2026-09-30 02:12:21.818 +07:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7233/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-09-30 02:12:30.392 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7233/api/Book/Get-all-books?pageNumber=1&pageSize=100 - null null
+2026-09-30 02:12:30.415 +07:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Read)
+2026-09-30 02:12:30.418 +07:00 [INF] AuthenticationScheme: Bearer was challenged.
+2026-09-30 02:12:30.420 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7233/api/Book/Get-all-books?pageNumber=1&pageSize=100 - 401 0 null 28.4918ms

@@ -35,6 +35,10 @@ bld/
 [Ll]og/
 [Ll]ogs/
 
+# Nhung: giu lai thu muc Logs cua bai tap LapTrinhWeb2_API (Phan 9 - Serilog)
+!LapTrinhWeb2_API/LapTrinhWeb2_API/Logs/
+!LapTrinhWeb2_API/LapTrinhWeb2_API/Logs/*
+
 # Visual Studio 2015/2017 cache/options directory
 .vs/
 # Uncomment if you have tasks that create the project's static files in wwwroot

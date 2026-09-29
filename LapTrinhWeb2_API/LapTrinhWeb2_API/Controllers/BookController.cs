@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
+using System.Text.Json;
 using WebAPI_simple.CustomActionFilter;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -18,10 +19,12 @@ namespace LapTrinhWeb2_API.Controllers
     {
         private readonly AppDbContext _dbContext;
         private readonly IBookRepository _bookRepository;
-        public BookController(AppDbContext dbContext, IBookRepository bookRepository)
+        private readonly ILogger<BookController> _logger;
+        public BookController(AppDbContext dbContext, IBookRepository bookRepository, ILogger<BookController> logger)
         {
             _dbContext = dbContext;
             _bookRepository = bookRepository;
+            _logger = logger;
         }
 
 
@@ -30,8 +33,13 @@ namespace LapTrinhWeb2_API.Controllers
         [Authorize(Roles ="Read")]
         public IActionResult GetAll([FromQuery] string? filterOn, [FromQuery] string? filterQuery, [FromQuery] string? sortBy, [FromQuery] bool isAscending, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 100)
         {
+            _logger.LogInformation("GetAll Book Action method was invoked");
+            _logger.LogWarning("This is a warning log");
+            _logger.LogError("This is a error log");
             // su dung reposity pattern 
             var allBooks = _bookRepository.GetAllBooks(filterOn, filterQuery, sortBy, isAscending, pageNumber, pageSize);
+            //debug
+            _logger.LogInformation($"Finished GetAllBook request with data {JsonSerializer.Serialize(allBooks)}");
             return Ok(allBooks);
         }
 
