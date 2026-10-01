@@ -1,0 +1,13 @@
+2026-10-01 14:47:41.071 +07:00 [INF] Request starting HTTP/2 POST https://localhost:7233/api/Images/Upload - multipart/form-data; boundary=----WebKitFormBoundarydohEIdXFYtYhcqaC 237078
+2026-10-01 14:47:41.109 +07:00 [INF] Executing endpoint 'LapTrinhWeb2_API.Controllers.ImagesController.Upload (LapTrinhWeb2_API)'
+2026-10-01 14:47:41.117 +07:00 [INF] Route matched with {action = "Upload", controller = "Images"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Upload(LapTrinhWeb2_API.Models.DTO.ImageUploadRequestDTO) on controller LapTrinhWeb2_API.Controllers.ImagesController (LapTrinhWeb2_API).
+2026-10-01 14:47:42.830 +07:00 [INF] Executed DbCommand (257ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Images] ([FileDescription], [FileExtension], [FileName], [FilePath], [FileSizeInBytes])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4);
+2026-10-01 14:47:42.873 +07:00 [INF] Executing OkObjectResult, writing value of type 'LapTrinhWeb2_API.Models.Domain.Image'.
+2026-10-01 14:47:42.906 +07:00 [INF] Executed action LapTrinhWeb2_API.Controllers.ImagesController.Upload (LapTrinhWeb2_API) in 1781.2399ms
+2026-10-01 14:47:42.916 +07:00 [INF] Executed endpoint 'LapTrinhWeb2_API.Controllers.ImagesController.Upload (LapTrinhWeb2_API)'
+2026-10-01 14:47:42.930 +07:00 [INF] Request finished HTTP/2 POST https://localhost:7233/api/Images/Upload - 200 null application/json; charset=utf-8 1859.5918ms

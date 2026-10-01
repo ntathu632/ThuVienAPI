@@ -9,6 +9,7 @@ using Serilog;
 using System.Text;
 using WebAPI_simple.Data;
 using WebAPI_simple.Repositories;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -64,6 +65,8 @@ builder.Services.AddScoped<IAuthorRepository, SQLAuthorRepository>();
 builder.Services.AddScoped<IBookRepository, SQLBookRepository>();
 builder.Services.AddScoped<IPublisherRepository, SQLPublisherRepository>();
 builder.Services.AddScoped<ITokenRepository, TokenRepository>();
+builder.Services.AddScoped<IImageRepository, LocalImageRepository>(); 
+builder.Services.AddHttpContextAccessor();
 // config identity user
 builder.Services.AddIdentityCore<IdentityUser>()
  .AddRoles<IdentityRole>()
@@ -103,6 +106,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Images")),
+    RequestPath = "/Images"
+});
 
 app.UseAuthentication();
 

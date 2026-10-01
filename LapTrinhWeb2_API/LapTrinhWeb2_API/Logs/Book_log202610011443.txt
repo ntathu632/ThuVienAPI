@@ -1,0 +1,7 @@
+2026-10-01 14:43:22.974 +07:00 [INF] Request starting HTTP/2 POST https://localhost:7233/api/Images/Upload - multipart/form-data; boundary=----WebKitFormBoundaryBxatkGgUnwj7tzKO 1838836
+2026-10-01 14:43:23.089 +07:00 [INF] Executing endpoint 'LapTrinhWeb2_API.Controllers.ImagesController.Upload (LapTrinhWeb2_API)'
+2026-10-01 14:43:23.139 +07:00 [INF] Route matched with {action = "Upload", controller = "Images"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Upload(LapTrinhWeb2_API.Models.DTO.ImageUploadRequestDTO) on controller LapTrinhWeb2_API.Controllers.ImagesController (LapTrinhWeb2_API).
+2026-10-01 14:43:23.449 +07:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+2026-10-01 14:43:23.483 +07:00 [INF] Executed action LapTrinhWeb2_API.Controllers.ImagesController.Upload (LapTrinhWeb2_API) in 332.6409ms
+2026-10-01 14:43:23.490 +07:00 [INF] Executed endpoint 'LapTrinhWeb2_API.Controllers.ImagesController.Upload (LapTrinhWeb2_API)'
+2026-10-01 14:43:23.515 +07:00 [INF] Request finished HTTP/2 POST https://localhost:7233/api/Images/Upload - 400 null application/json; charset=utf-8 541.1729ms

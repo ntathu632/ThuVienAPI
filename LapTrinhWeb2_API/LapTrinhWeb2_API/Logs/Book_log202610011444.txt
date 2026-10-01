@@ -1,0 +1,14 @@
+2026-10-01 14:44:32.480 +07:00 [INF] Request starting HTTP/2 POST https://localhost:7233/api/Images/Upload - multipart/form-data; boundary=----WebKitFormBoundaryUymGKW2N3CDcwPvY 1178542
+2026-10-01 14:44:32.551 +07:00 [INF] Executing endpoint 'LapTrinhWeb2_API.Controllers.ImagesController.Upload (LapTrinhWeb2_API)'
+2026-10-01 14:44:32.563 +07:00 [INF] Route matched with {action = "Upload", controller = "Images"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Upload(LapTrinhWeb2_API.Models.DTO.ImageUploadRequestDTO) on controller LapTrinhWeb2_API.Controllers.ImagesController (LapTrinhWeb2_API).
+2026-10-01 14:44:32.631 +07:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+2026-10-01 14:44:32.636 +07:00 [INF] Executed action LapTrinhWeb2_API.Controllers.ImagesController.Upload (LapTrinhWeb2_API) in 66.371ms
+2026-10-01 14:44:32.645 +07:00 [INF] Executed endpoint 'LapTrinhWeb2_API.Controllers.ImagesController.Upload (LapTrinhWeb2_API)'
+2026-10-01 14:44:32.651 +07:00 [INF] Request finished HTTP/2 POST https://localhost:7233/api/Images/Upload - 400 null application/json; charset=utf-8 171.5124ms
+2026-10-01 14:44:35.195 +07:00 [INF] Request starting HTTP/2 POST https://localhost:7233/api/Images/Upload - multipart/form-data; boundary=----WebKitFormBoundarycabnP1JxYqXPhg5B 1178542
+2026-10-01 14:44:35.208 +07:00 [INF] Executing endpoint 'LapTrinhWeb2_API.Controllers.ImagesController.Upload (LapTrinhWeb2_API)'
+2026-10-01 14:44:35.211 +07:00 [INF] Route matched with {action = "Upload", controller = "Images"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Upload(LapTrinhWeb2_API.Models.DTO.ImageUploadRequestDTO) on controller LapTrinhWeb2_API.Controllers.ImagesController (LapTrinhWeb2_API).
+2026-10-01 14:44:35.240 +07:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+2026-10-01 14:44:35.243 +07:00 [INF] Executed action LapTrinhWeb2_API.Controllers.ImagesController.Upload (LapTrinhWeb2_API) in 29.5243ms
+2026-10-01 14:44:35.248 +07:00 [INF] Executed endpoint 'LapTrinhWeb2_API.Controllers.ImagesController.Upload (LapTrinhWeb2_API)'
+2026-10-01 14:44:35.250 +07:00 [INF] Request finished HTTP/2 POST https://localhost:7233/api/Images/Upload - 400 null application/json; charset=utf-8 54.991ms
