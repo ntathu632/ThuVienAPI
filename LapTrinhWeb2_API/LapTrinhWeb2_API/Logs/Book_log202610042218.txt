@@ -1,0 +1,21 @@
+2026-10-04 22:18:30.028 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:7233/api/Book/get-book-by-id/13 - null null
+2026-10-04 22:18:30.101 +07:00 [INF] Executing endpoint 'LapTrinhWeb2_API.Controllers.BookController.GetBookById (LapTrinhWeb2_API)'
+2026-10-04 22:18:30.124 +07:00 [INF] Route matched with {action = "GetBookById", controller = "Book"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetBookById(Int32) on controller LapTrinhWeb2_API.Controllers.BookController (LapTrinhWeb2_API).
+2026-10-04 22:18:30.192 +07:00 [INF] Executed DbCommand (48ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Title], [t].[Description], [t].[IsRead], [t].[DateRead], [t].[Rate], [t].[Genre], [t].[CoverUrl], [t].[Name], [t].[Id0], [t0].[FullName], [t0].[BookId], [t0].[AuthorId], [t0].[Id]
+FROM (
+    SELECT TOP(1) [b].[Id], [b].[Title], [b].[Description], [b].[IsRead], [b].[DateRead], [b].[Rate], [b].[Genre], [b].[CoverUrl], [p].[Name], [p].[Id] AS [Id0]
+    FROM [Books] AS [b]
+    INNER JOIN [Publishers] AS [p] ON [b].[PublisherId] = [p].[Id]
+    WHERE [b].[Id] = @__id_0
+) AS [t]
+LEFT JOIN (
+    SELECT [a].[FullName], [b0].[BookId], [b0].[AuthorId], [a].[Id]
+    FROM [Book_Authors] AS [b0]
+    INNER JOIN [Authors] AS [a] ON [b0].[AuthorId] = [a].[Id]
+) AS [t0] ON [t].[Id] = [t0].[BookId]
+ORDER BY [t].[Id], [t].[Id0], [t0].[BookId], [t0].[AuthorId]
+2026-10-04 22:18:30.197 +07:00 [INF] Executing OkObjectResult, writing value of type 'LapTrinhWeb2_API.Models.DTO.BookWithAuthorAndPublisherDTO'.
+2026-10-04 22:18:30.200 +07:00 [INF] Executed action LapTrinhWeb2_API.Controllers.BookController.GetBookById (LapTrinhWeb2_API) in 68.4857ms
+2026-10-04 22:18:30.201 +07:00 [INF] Executed endpoint 'LapTrinhWeb2_API.Controllers.BookController.GetBookById (LapTrinhWeb2_API)'
+2026-10-04 22:18:30.203 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:7233/api/Book/get-book-by-id/13 - 200 null application/json; charset=utf-8 175.2116ms

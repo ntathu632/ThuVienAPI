@@ -1,0 +1,32 @@
+2026-10-01 15:27:56.996 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7233/api/Book/Get-all-books?sortBy=Id&isAscending=false&pageNumber=1&pageSize=3 - null null
+2026-10-01 15:27:57.082 +07:00 [INF] Executing endpoint 'LapTrinhWeb2_API.Controllers.BookController.GetAll (LapTrinhWeb2_API)'
+2026-10-01 15:27:57.088 +07:00 [INF] Route matched with {action = "GetAll", controller = "Book"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetAll(System.String, System.String, System.String, Boolean, Int32, Int32) on controller LapTrinhWeb2_API.Controllers.BookController (LapTrinhWeb2_API).
+2026-10-01 15:27:57.099 +07:00 [INF] GetAll Book Action method was invoked
+2026-10-01 15:27:57.101 +07:00 [WRN] This is a warning log
+2026-10-01 15:27:57.103 +07:00 [ERR] This is a error log
+2026-10-01 15:27:57.223 +07:00 [INF] Executed DbCommand (99ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Title], [t].[Description], [t].[IsRead], CASE
+    WHEN [t].[IsRead] = CAST(1 AS bit) THEN [t].[DateRead]
+    ELSE NULL
+END, CASE
+    WHEN [t].[IsRead] = CAST(1 AS bit) THEN [t].[Rate]
+    ELSE NULL
+END, [t].[Genre], [t].[CoverUrl], [p].[Name], [p].[Id], [t0].[FullName], [t0].[BookId], [t0].[AuthorId], [t0].[Id]
+FROM (
+    SELECT [b].[Id], [b].[CoverUrl], [b].[DateRead], [b].[Description], [b].[Genre], [b].[IsRead], [b].[PublisherId], [b].[Rate], [b].[Title]
+    FROM [Books] AS [b]
+    ORDER BY (SELECT 1)
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [t]
+INNER JOIN [Publishers] AS [p] ON [t].[PublisherId] = [p].[Id]
+LEFT JOIN (
+    SELECT [a].[FullName], [b0].[BookId], [b0].[AuthorId], [a].[Id]
+    FROM [Book_Authors] AS [b0]
+    INNER JOIN [Authors] AS [a] ON [b0].[AuthorId] = [a].[Id]
+) AS [t0] ON [t].[Id] = [t0].[BookId]
+ORDER BY [t].[Id], [p].[Id], [t0].[BookId], [t0].[AuthorId]
+2026-10-01 15:27:57.229 +07:00 [INF] Finished GetAllBook request with data [{"Id":1,"Title":"M\u1EAFt bi\u1EBFc","Description":"C\u00E2u chuy\u1EC7n t\u00ECnh \u0111\u01A1n ph\u01B0\u01A1ng c\u1EE7a Ng\u1EA1n d\u00E0nh cho H\u00E0 Lan.","IsRead":true,"DateRead":"2026-03-10T00:00:00","Rate":5,"Genre":"Ti\u1EC3u thuy\u1EBFt","CoverUrl":"https://example.com/covers/mat-biec.jpg","DateAdded":"0001-01-01T00:00:00","PublisherName":"Nh\u00E0 xu\u1EA5t b\u1EA3n Tr\u1EBB","AuthorNames":["Nguy\u1EC5n Nh\u1EADt \u00C1nh"]},{"Id":2,"Title":"Cho t\u00F4i xin m\u1ED9t v\u00E9 \u0111i tu\u1ED5i th\u01A1","Description":"Nh\u1EEFng k\u1EF7 ni\u1EC7m tu\u1ED5i th\u01A1 trong tr\u1EBBo, h\u00E0i h\u01B0\u1EDBc.","IsRead":true,"DateRead":"2026-04-02T00:00:00","Rate":4,"Genre":"Ti\u1EC3u thuy\u1EBFt","CoverUrl":"https://example.com/covers/ve-tuoi-tho.jpg","DateAdded":"0001-01-01T00:00:00","PublisherName":"Nh\u00E0 xu\u1EA5t b\u1EA3n Tr\u1EBB","AuthorNames":["Nguy\u1EC5n Nh\u1EADt \u00C1nh"]},{"Id":3,"Title":"D\u1EBF M\u00E8n phi\u00EAu l\u01B0u k\u00FD","Description":"Cu\u1ED9c phi\u00EAu l\u01B0u c\u1EE7a ch\u00FA D\u1EBF M\u00E8n qua nhi\u1EC1u v\u00F9ng \u0111\u1EA5t.","IsRead":true,"DateRead":"2026-02-20T00:00:00","Rate":5,"Genre":"Thi\u1EBFu nhi","CoverUrl":"https://example.com/covers/de-men.jpg","DateAdded":"0001-01-01T00:00:00","PublisherName":"Nh\u00E0 xu\u1EA5t b\u1EA3n Kim \u0110\u1ED3ng","AuthorNames":["T\u00F4 Ho\u00E0i"]}]
+2026-10-01 15:27:57.232 +07:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[LapTrinhWeb2_API.Models.DTO.BookWithAuthorAndPublisherDTO, LapTrinhWeb2_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-10-01 15:27:57.235 +07:00 [INF] Executed action LapTrinhWeb2_API.Controllers.BookController.GetAll (LapTrinhWeb2_API) in 144.1497ms
+2026-10-01 15:27:57.238 +07:00 [INF] Executed endpoint 'LapTrinhWeb2_API.Controllers.BookController.GetAll (LapTrinhWeb2_API)'
+2026-10-01 15:27:57.240 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7233/api/Book/Get-all-books?sortBy=Id&isAscending=false&pageNumber=1&pageSize=3 - 200 null application/json; charset=utf-8 244.6758ms

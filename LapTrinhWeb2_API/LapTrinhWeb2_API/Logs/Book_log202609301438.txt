@@ -1,5 +1,0 @@
-2026-09-30 14:38:10.470 +07:00 [INF] Request starting HTTP/2 DELETE https://localhost:7233/api/Book/delete-book-by-id/2 - null null
-2026-09-30 14:38:10.535 +07:00 [INF] Authorization failed. These requirements were not met:
-RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Write)
-2026-09-30 14:38:10.540 +07:00 [INF] AuthenticationScheme: Bearer was forbidden.
-2026-09-30 14:38:10.548 +07:00 [INF] Request finished HTTP/2 DELETE https://localhost:7233/api/Book/delete-book-by-id/2 - 403 0 null 79.3219ms
