@@ -1,0 +1,30 @@
+2026-10-06 07:38:16.471 +07:00 [INF] User profile is available. Using 'C:\Users\anhthu632\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-10-06 07:38:16.793 +07:00 [INF] Now listening on: https://localhost:7233
+2026-10-06 07:38:16.818 +07:00 [INF] Now listening on: http://localhost:5191
+2026-10-06 07:38:16.971 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-10-06 07:38:17.655 +07:00 [INF] Hosting environment: Development
+2026-10-06 07:38:18.362 +07:00 [INF] Content root path: C:\LapTrinhWeb2_API\LapTrinhWeb2_API\LapTrinhWeb2_API
+2026-10-06 07:38:21.577 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7233/swagger/index.html - null null
+2026-10-06 07:38:23.828 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7233/swagger/index.html - 200 null text/html;charset=utf-8 2089.0798ms
+2026-10-06 07:38:23.944 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7233/_framework/aspnetcore-browser-refresh.js - null null
+2026-10-06 07:38:24.162 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7233/_vs/browserLink - null null
+2026-10-06 07:38:24.891 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7233/_framework/aspnetcore-browser-refresh.js - 200 16517 application/javascript; charset=utf-8 946.6609ms
+2026-10-06 07:38:25.086 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7233/_vs/browserLink - 200 null text/javascript; charset=UTF-8 924.0526ms
+2026-10-06 07:38:25.236 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7233/swagger/v1/swagger.json - null null
+2026-10-06 07:38:25.535 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7233/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 297.9753ms
+2026-10-06 07:38:52.426 +07:00 [INF] Request starting HTTP/2 POST https://localhost:7233/api/User/Login - application/json 60
+2026-10-06 07:38:52.485 +07:00 [INF] Executing endpoint 'WebAPI_simple.Controllers.UserController.Login (LapTrinhWeb2_API)'
+2026-10-06 07:38:52.535 +07:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LapTrinhWeb2_API.Models.DTO.LoginRequestDTO) on controller WebAPI_simple.Controllers.UserController (LapTrinhWeb2_API).
+2026-10-06 07:38:54.094 +07:00 [INF] Executed DbCommand (295ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2026-10-06 07:38:54.303 +07:00 [INF] Executed DbCommand (38ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-10-06 07:38:54.331 +07:00 [INF] Executing OkObjectResult, writing value of type 'WebAPI_simple.Models.DTO.LoginResponseDTO'.
+2026-10-06 07:38:54.338 +07:00 [INF] Executed action WebAPI_simple.Controllers.UserController.Login (LapTrinhWeb2_API) in 1796.0434ms
+2026-10-06 07:38:54.340 +07:00 [INF] Executed endpoint 'WebAPI_simple.Controllers.UserController.Login (LapTrinhWeb2_API)'
+2026-10-06 07:38:54.347 +07:00 [INF] Request finished HTTP/2 POST https://localhost:7233/api/User/Login - 200 null application/json; charset=utf-8 1921.8472ms

@@ -1,0 +1,64 @@
+2026-10-05 09:48:17.825 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7233/api/Book/Get-all-books?filterOn=Title&sortBy=Id&isAscending=true&pageNumber=3&pageSize=3 - null null
+2026-10-05 09:48:17.871 +07:00 [INF] Executing endpoint 'LapTrinhWeb2_API.Controllers.BookController.GetAll (LapTrinhWeb2_API)'
+2026-10-05 09:48:17.876 +07:00 [INF] Route matched with {action = "GetAll", controller = "Book"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetAll(System.String, System.String, System.String, Boolean, Int32, Int32) on controller LapTrinhWeb2_API.Controllers.BookController (LapTrinhWeb2_API).
+2026-10-05 09:48:17.890 +07:00 [INF] GetAll Book Action method was invoked
+2026-10-05 09:48:17.892 +07:00 [WRN] This is a warning log
+2026-10-05 09:48:17.893 +07:00 [ERR] This is a error log
+2026-10-05 09:48:17.959 +07:00 [INF] Executed DbCommand (55ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Title], [t].[Description], [t].[IsRead], CASE
+    WHEN [t].[IsRead] = CAST(1 AS bit) THEN [t].[DateRead]
+    ELSE NULL
+END, CASE
+    WHEN [t].[IsRead] = CAST(1 AS bit) THEN [t].[Rate]
+    ELSE NULL
+END, [t].[Genre], [t].[CoverUrl], [p].[Name], [p].[Id], [t0].[FullName], [t0].[BookId], [t0].[AuthorId], [t0].[Id]
+FROM (
+    SELECT [b].[Id], [b].[CoverUrl], [b].[DateRead], [b].[Description], [b].[Genre], [b].[IsRead], [b].[PublisherId], [b].[Rate], [b].[Title]
+    FROM [Books] AS [b]
+    ORDER BY [b].[Id]
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [t]
+INNER JOIN [Publishers] AS [p] ON [t].[PublisherId] = [p].[Id]
+LEFT JOIN (
+    SELECT [a].[FullName], [b0].[BookId], [b0].[AuthorId], [a].[Id]
+    FROM [Book_Authors] AS [b0]
+    INNER JOIN [Authors] AS [a] ON [b0].[AuthorId] = [a].[Id]
+) AS [t0] ON [t].[Id] = [t0].[BookId]
+ORDER BY [t].[Id], [p].[Id], [t0].[BookId], [t0].[AuthorId]
+2026-10-05 09:48:17.963 +07:00 [INF] Finished GetAllBook request with data [{"Id":7,"Title":"Clean Code","Description":"H\u01B0\u1EDBng d\u1EABn vi\u1EBFt m\u00E3 s\u1EA1ch, d\u1EC5 \u0111\u1ECDc v\u00E0 d\u1EC5 b\u1EA3o tr\u00EC.","IsRead":true,"DateRead":"2026-06-30T00:00:00","Rate":4,"Genre":"C\u00F4ng ngh\u1EC7","CoverUrl":"https://example.com/covers/clean-code.jpg","DateAdded":"0001-01-01T00:00:00","PublisherName":"HarperCollins","AuthorNames":["Robert C. Martin"]},{"Id":8,"Title":"Refactoring","Description":"K\u1EF9 thu\u1EADt c\u1EA3i thi\u1EC7n c\u1EA5u tr\u00FAc m\u00E3 m\u00E0 kh\u00F4ng \u0111\u1ED5i h\u00E0nh vi.","IsRead":false,"DateRead":null,"Rate":null,"Genre":"C\u00F4ng ngh\u1EC7","CoverUrl":null,"DateAdded":"0001-01-01T00:00:00","PublisherName":"HarperCollins","AuthorNames":["Robert C. Martin","Martin Fowler"]},{"Id":12,"Title":"S\u00E1ch kinh th\u00E1nh","Description":"string","IsRead":true,"DateRead":"2026-10-01T08:05:30.611","Rate":5,"Genre":"string","CoverUrl":"string","DateAdded":"0001-01-01T00:00:00","PublisherName":"Nh\u00E0 xu\u1EA5t b\u1EA3n Tr\u1EBB","AuthorNames":["Nguy\u1EC5n Nh\u1EADt \u00C1nh"]}]
+2026-10-05 09:48:17.966 +07:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[LapTrinhWeb2_API.Models.DTO.BookWithAuthorAndPublisherDTO, LapTrinhWeb2_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-10-05 09:48:17.973 +07:00 [INF] Executed action LapTrinhWeb2_API.Controllers.BookController.GetAll (LapTrinhWeb2_API) in 89.662ms
+2026-10-05 09:48:17.985 +07:00 [INF] Executed endpoint 'LapTrinhWeb2_API.Controllers.BookController.GetAll (LapTrinhWeb2_API)'
+2026-10-05 09:48:17.987 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7233/api/Book/Get-all-books?filterOn=Title&sortBy=Id&isAscending=true&pageNumber=3&pageSize=3 - 200 null application/json; charset=utf-8 161.7632ms
+2026-10-05 09:48:50.486 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7233/api/Book/Get-all-books?filterOn=Title&sortBy=Id&isAscending=true&pageNumber=1&pageSize=2 - null null
+2026-10-05 09:48:50.564 +07:00 [INF] Executing endpoint 'LapTrinhWeb2_API.Controllers.BookController.GetAll (LapTrinhWeb2_API)'
+2026-10-05 09:48:50.577 +07:00 [INF] Route matched with {action = "GetAll", controller = "Book"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetAll(System.String, System.String, System.String, Boolean, Int32, Int32) on controller LapTrinhWeb2_API.Controllers.BookController (LapTrinhWeb2_API).
+2026-10-05 09:48:50.599 +07:00 [INF] GetAll Book Action method was invoked
+2026-10-05 09:48:50.601 +07:00 [WRN] This is a warning log
+2026-10-05 09:48:50.602 +07:00 [ERR] This is a error log
+2026-10-05 09:48:50.707 +07:00 [INF] Executed DbCommand (86ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Title], [t].[Description], [t].[IsRead], CASE
+    WHEN [t].[IsRead] = CAST(1 AS bit) THEN [t].[DateRead]
+    ELSE NULL
+END, CASE
+    WHEN [t].[IsRead] = CAST(1 AS bit) THEN [t].[Rate]
+    ELSE NULL
+END, [t].[Genre], [t].[CoverUrl], [p].[Name], [p].[Id], [t0].[FullName], [t0].[BookId], [t0].[AuthorId], [t0].[Id]
+FROM (
+    SELECT [b].[Id], [b].[CoverUrl], [b].[DateRead], [b].[Description], [b].[Genre], [b].[IsRead], [b].[PublisherId], [b].[Rate], [b].[Title]
+    FROM [Books] AS [b]
+    ORDER BY [b].[Id]
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [t]
+INNER JOIN [Publishers] AS [p] ON [t].[PublisherId] = [p].[Id]
+LEFT JOIN (
+    SELECT [a].[FullName], [b0].[BookId], [b0].[AuthorId], [a].[Id]
+    FROM [Book_Authors] AS [b0]
+    INNER JOIN [Authors] AS [a] ON [b0].[AuthorId] = [a].[Id]
+) AS [t0] ON [t].[Id] = [t0].[BookId]
+ORDER BY [t].[Id], [p].[Id], [t0].[BookId], [t0].[AuthorId]
+2026-10-05 09:48:50.712 +07:00 [INF] Finished GetAllBook request with data [{"Id":1,"Title":"M\u1EAFt bi\u1EBFc","Description":"C\u00E2u chuy\u1EC7n t\u00ECnh \u0111\u01A1n ph\u01B0\u01A1ng c\u1EE7a Ng\u1EA1n d\u00E0nh cho H\u00E0 Lan.","IsRead":true,"DateRead":"2026-03-10T00:00:00","Rate":5,"Genre":"Ti\u1EC3u thuy\u1EBFt","CoverUrl":"https://example.com/covers/mat-biec.jpg","DateAdded":"0001-01-01T00:00:00","PublisherName":"Nh\u00E0 xu\u1EA5t b\u1EA3n Tr\u1EBB","AuthorNames":["Nguy\u1EC5n Nh\u1EADt \u00C1nh"]},{"Id":2,"Title":"Cho t\u00F4i xin m\u1ED9t v\u00E9 \u0111i tu\u1ED5i th\u01A1","Description":"Nh\u1EEFng k\u1EF7 ni\u1EC7m tu\u1ED5i th\u01A1 trong tr\u1EBBo, h\u00E0i h\u01B0\u1EDBc.","IsRead":true,"DateRead":"2026-04-02T00:00:00","Rate":4,"Genre":"Ti\u1EC3u thuy\u1EBFt","CoverUrl":"https://example.com/covers/ve-tuoi-tho.jpg","DateAdded":"0001-01-01T00:00:00","PublisherName":"Nh\u00E0 xu\u1EA5t b\u1EA3n Tr\u1EBB","AuthorNames":["Nguy\u1EC5n Nh\u1EADt \u00C1nh"]}]
+2026-10-05 09:48:50.720 +07:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[LapTrinhWeb2_API.Models.DTO.BookWithAuthorAndPublisherDTO, LapTrinhWeb2_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-10-05 09:48:50.723 +07:00 [INF] Executed action LapTrinhWeb2_API.Controllers.BookController.GetAll (LapTrinhWeb2_API) in 136.259ms
+2026-10-05 09:48:50.728 +07:00 [INF] Executed endpoint 'LapTrinhWeb2_API.Controllers.BookController.GetAll (LapTrinhWeb2_API)'
+2026-10-05 09:48:50.732 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7233/api/Book/Get-all-books?filterOn=Title&sortBy=Id&isAscending=true&pageNumber=1&pageSize=2 - 200 null application/json; charset=utf-8 247.7104ms

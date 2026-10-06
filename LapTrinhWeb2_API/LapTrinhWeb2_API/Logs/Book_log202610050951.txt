@@ -1,0 +1,10 @@
+2026-10-05 09:51:37.241 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7233/api/Images - null null
+2026-10-05 09:51:37.283 +07:00 [INF] Executing endpoint 'LapTrinhWeb2_API.Controllers.ImagesController.GetAllInfoImages (LapTrinhWeb2_API)'
+2026-10-05 09:51:37.333 +07:00 [INF] Route matched with {action = "GetAllInfoImages", controller = "Images"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetAllInfoImages() on controller LapTrinhWeb2_API.Controllers.ImagesController (LapTrinhWeb2_API).
+2026-10-05 09:51:37.475 +07:00 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [i].[Id], [i].[FileDescription], [i].[FileExtension], [i].[FileName], [i].[FilePath], [i].[FileSizeInBytes]
+FROM [Images] AS [i]
+2026-10-05 09:51:37.580 +07:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[LapTrinhWeb2_API.Models.Domain.Image, LapTrinhWeb2_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-10-05 09:51:37.629 +07:00 [INF] Executed action LapTrinhWeb2_API.Controllers.ImagesController.GetAllInfoImages (LapTrinhWeb2_API) in 292.8304ms
+2026-10-05 09:51:37.633 +07:00 [INF] Executed endpoint 'LapTrinhWeb2_API.Controllers.ImagesController.GetAllInfoImages (LapTrinhWeb2_API)'
+2026-10-05 09:51:37.634 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7233/api/Images - 200 null application/json; charset=utf-8 394.9556ms

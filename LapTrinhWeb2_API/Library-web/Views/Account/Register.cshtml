@@ -1,0 +1,31 @@
+@model library_web.Models.DTO.registerDTO
+@{
+    ViewData["Title"] = "Đăng ký";
+}
+<h2>Đăng ký</h2>
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+<form asp-controller="Account" asp-action="Register" method="post" style="max-width:400px">
+    <div class="mb-3">
+        <label asp-for="Username" class="form-label">Email</label>
+        <input asp-for="Username" class="form-control" />
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label">Mật khẩu</label>
+        <input asp-for="Password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="ConfirmPassword" class="form-label">Nhập lại mật khẩu</label>
+        <input asp-for="ConfirmPassword" class="form-control" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Đăng ký</button>
+    <a asp-action="Login" class="btn btn-link">Đã có tài khoản?</a>
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

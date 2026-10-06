@@ -1,0 +1,94 @@
+2026-10-06 10:43:06.447 +07:00 [INF] Request starting HTTP/2 POST https://localhost:7233/api/User/Login - application/json 60
+2026-10-06 10:43:06.580 +07:00 [INF] Executing endpoint 'WebAPI_simple.Controllers.UserController.Login (LapTrinhWeb2_API)'
+2026-10-06 10:43:06.633 +07:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LapTrinhWeb2_API.Models.DTO.LoginRequestDTO) on controller WebAPI_simple.Controllers.UserController (LapTrinhWeb2_API).
+2026-10-06 10:43:08.014 +07:00 [INF] Executed DbCommand (55ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2026-10-06 10:43:08.217 +07:00 [INF] Executed DbCommand (14ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-10-06 10:43:08.245 +07:00 [INF] Executing OkObjectResult, writing value of type 'WebAPI_simple.Models.DTO.LoginResponseDTO'.
+2026-10-06 10:43:08.251 +07:00 [INF] Executed action WebAPI_simple.Controllers.UserController.Login (LapTrinhWeb2_API) in 1610.9547ms
+2026-10-06 10:43:08.255 +07:00 [INF] Executed endpoint 'WebAPI_simple.Controllers.UserController.Login (LapTrinhWeb2_API)'
+2026-10-06 10:43:08.263 +07:00 [INF] Request finished HTTP/2 POST https://localhost:7233/api/User/Login - 200 null application/json; charset=utf-8 1816.4621ms
+2026-10-06 10:43:47.498 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7233/api/Book/Get-all-books?filterOn=author&filterQuery=Cao&pageNumber=1&pageSize=100 - null null
+2026-10-06 10:43:47.591 +07:00 [INF] Executing endpoint 'LapTrinhWeb2_API.Controllers.BookController.GetAll (LapTrinhWeb2_API)'
+2026-10-06 10:43:47.602 +07:00 [INF] Route matched with {action = "GetAll", controller = "Book"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetAll(System.String, System.String, System.String, Boolean, Int32, Int32) on controller LapTrinhWeb2_API.Controllers.BookController (LapTrinhWeb2_API).
+2026-10-06 10:43:47.632 +07:00 [INF] GetAll Book Action method was invoked
+2026-10-06 10:43:47.634 +07:00 [WRN] This is a warning log
+2026-10-06 10:43:47.634 +07:00 [ERR] This is a error log
+2026-10-06 10:43:47.824 +07:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-10-06 10:43:47.825 +07:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-10-06 10:43:47.983 +07:00 [INF] Executed DbCommand (99ms) [Parameters=[@__filterQuery_0='?' (Size = 4000), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Title], [t].[Description], [t].[IsRead], CASE
+    WHEN [t].[IsRead] = CAST(1 AS bit) THEN [t].[DateRead]
+    ELSE NULL
+END, CASE
+    WHEN [t].[IsRead] = CAST(1 AS bit) THEN [t].[Rate]
+    ELSE NULL
+END, [t].[Genre], [t].[CoverUrl], [p].[Name], [p].[Id], [t0].[FullName], [t0].[BookId], [t0].[AuthorId], [t0].[Id]
+FROM (
+    SELECT [b].[Id], [b].[CoverUrl], [b].[DateRead], [b].[Description], [b].[Genre], [b].[IsRead], [b].[PublisherId], [b].[Rate], [b].[Title]
+    FROM [Books] AS [b]
+    WHERE @__filterQuery_0 IN (
+        SELECT [a].[FullName]
+        FROM [Book_Authors] AS [b0]
+        INNER JOIN [Authors] AS [a] ON [b0].[AuthorId] = [a].[Id]
+        WHERE [b].[Id] = [b0].[BookId]
+    )
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [t]
+INNER JOIN [Publishers] AS [p] ON [t].[PublisherId] = [p].[Id]
+LEFT JOIN (
+    SELECT [a0].[FullName], [b1].[BookId], [b1].[AuthorId], [a0].[Id]
+    FROM [Book_Authors] AS [b1]
+    INNER JOIN [Authors] AS [a0] ON [b1].[AuthorId] = [a0].[Id]
+) AS [t0] ON [t].[Id] = [t0].[BookId]
+ORDER BY [t].[Id], [p].[Id], [t0].[BookId], [t0].[AuthorId]
+2026-10-06 10:43:47.998 +07:00 [INF] Finished GetAllBook request with data []
+2026-10-06 10:43:48.000 +07:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[LapTrinhWeb2_API.Models.DTO.BookWithAuthorAndPublisherDTO, LapTrinhWeb2_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-10-06 10:43:48.007 +07:00 [INF] Executed action LapTrinhWeb2_API.Controllers.BookController.GetAll (LapTrinhWeb2_API) in 401.0461ms
+2026-10-06 10:43:48.009 +07:00 [INF] Executed endpoint 'LapTrinhWeb2_API.Controllers.BookController.GetAll (LapTrinhWeb2_API)'
+2026-10-06 10:43:48.014 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7233/api/Book/Get-all-books?filterOn=author&filterQuery=Cao&pageNumber=1&pageSize=100 - 200 null application/json; charset=utf-8 514.7234ms
+2026-10-06 10:43:54.603 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7233/api/Book/Get-all-books?filterOn=author&filterQuery=Nam%20Cao&pageNumber=1&pageSize=100 - null null
+2026-10-06 10:43:54.654 +07:00 [INF] Executing endpoint 'LapTrinhWeb2_API.Controllers.BookController.GetAll (LapTrinhWeb2_API)'
+2026-10-06 10:43:54.655 +07:00 [INF] Route matched with {action = "GetAll", controller = "Book"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetAll(System.String, System.String, System.String, Boolean, Int32, Int32) on controller LapTrinhWeb2_API.Controllers.BookController (LapTrinhWeb2_API).
+2026-10-06 10:43:54.660 +07:00 [INF] GetAll Book Action method was invoked
+2026-10-06 10:43:54.661 +07:00 [WRN] This is a warning log
+2026-10-06 10:43:54.662 +07:00 [ERR] This is a error log
+2026-10-06 10:43:54.728 +07:00 [INF] Executed DbCommand (50ms) [Parameters=[@__filterQuery_0='?' (Size = 4000), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Title], [t].[Description], [t].[IsRead], CASE
+    WHEN [t].[IsRead] = CAST(1 AS bit) THEN [t].[DateRead]
+    ELSE NULL
+END, CASE
+    WHEN [t].[IsRead] = CAST(1 AS bit) THEN [t].[Rate]
+    ELSE NULL
+END, [t].[Genre], [t].[CoverUrl], [p].[Name], [p].[Id], [t0].[FullName], [t0].[BookId], [t0].[AuthorId], [t0].[Id]
+FROM (
+    SELECT [b].[Id], [b].[CoverUrl], [b].[DateRead], [b].[Description], [b].[Genre], [b].[IsRead], [b].[PublisherId], [b].[Rate], [b].[Title]
+    FROM [Books] AS [b]
+    WHERE @__filterQuery_0 IN (
+        SELECT [a].[FullName]
+        FROM [Book_Authors] AS [b0]
+        INNER JOIN [Authors] AS [a] ON [b0].[AuthorId] = [a].[Id]
+        WHERE [b].[Id] = [b0].[BookId]
+    )
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [t]
+INNER JOIN [Publishers] AS [p] ON [t].[PublisherId] = [p].[Id]
+LEFT JOIN (
+    SELECT [a0].[FullName], [b1].[BookId], [b1].[AuthorId], [a0].[Id]
+    FROM [Book_Authors] AS [b1]
+    INNER JOIN [Authors] AS [a0] ON [b1].[AuthorId] = [a0].[Id]
+) AS [t0] ON [t].[Id] = [t0].[BookId]
+ORDER BY [t].[Id], [p].[Id], [t0].[BookId], [t0].[AuthorId]
+2026-10-06 10:43:54.740 +07:00 [INF] Finished GetAllBook request with data [{"Id":4,"Title":"Ch\u00ED Ph\u00E8o","Description":"Truy\u1EC7n ng\u1EAFn v\u1EC1 s\u1ED1 ph\u1EADn ng\u01B0\u1EDDi n\u00F4ng d\u00E2n tr\u01B0\u1EDBc C\u00E1ch m\u1EA1ng.","IsRead":false,"DateRead":null,"Rate":null,"Genre":"V\u0103n h\u1ECDc","CoverUrl":null,"DateAdded":"0001-01-01T00:00:00","PublisherName":"Nh\u00E0 xu\u1EA5t b\u1EA3n T\u1ED5ng h\u1EE3p TP.HCM","AuthorNames":["Nam Cao"]}]
+2026-10-06 10:43:54.742 +07:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[LapTrinhWeb2_API.Models.DTO.BookWithAuthorAndPublisherDTO, LapTrinhWeb2_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-10-06 10:43:54.744 +07:00 [INF] Executed action LapTrinhWeb2_API.Controllers.BookController.GetAll (LapTrinhWeb2_API) in 86.2653ms
+2026-10-06 10:43:54.747 +07:00 [INF] Executed endpoint 'LapTrinhWeb2_API.Controllers.BookController.GetAll (LapTrinhWeb2_API)'
+2026-10-06 10:43:54.748 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7233/api/Book/Get-all-books?filterOn=author&filterQuery=Nam%20Cao&pageNumber=1&pageSize=100 - 200 null application/json; charset=utf-8 145.6912ms

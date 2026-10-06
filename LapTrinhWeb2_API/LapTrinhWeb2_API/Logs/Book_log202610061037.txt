@@ -1,0 +1,40 @@
+2026-10-06 10:37:53.640 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7233/api/Book/Get-all-books?filterOn=author&filterQuery=N&pageNumber=1&pageSize=100 - null null
+2026-10-06 10:37:53.739 +07:00 [INF] Executing endpoint 'LapTrinhWeb2_API.Controllers.BookController.GetAll (LapTrinhWeb2_API)'
+2026-10-06 10:37:53.751 +07:00 [INF] Route matched with {action = "GetAll", controller = "Book"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetAll(System.String, System.String, System.String, Boolean, Int32, Int32) on controller LapTrinhWeb2_API.Controllers.BookController (LapTrinhWeb2_API).
+2026-10-06 10:37:53.765 +07:00 [INF] GetAll Book Action method was invoked
+2026-10-06 10:37:53.768 +07:00 [WRN] This is a warning log
+2026-10-06 10:37:53.770 +07:00 [ERR] This is a error log
+2026-10-06 10:37:54.658 +07:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-10-06 10:37:55.067 +07:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-10-06 10:37:57.030 +07:00 [INF] Executed DbCommand (1,778ms) [Parameters=[@__filterQuery_0='?' (Size = 4000), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Title], [t].[Description], [t].[IsRead], CASE
+    WHEN [t].[IsRead] = CAST(1 AS bit) THEN [t].[DateRead]
+    ELSE NULL
+END, CASE
+    WHEN [t].[IsRead] = CAST(1 AS bit) THEN [t].[Rate]
+    ELSE NULL
+END, [t].[Genre], [t].[CoverUrl], [p].[Name], [p].[Id], [t0].[FullName], [t0].[BookId], [t0].[AuthorId], [t0].[Id]
+FROM (
+    SELECT [b].[Id], [b].[CoverUrl], [b].[DateRead], [b].[Description], [b].[Genre], [b].[IsRead], [b].[PublisherId], [b].[Rate], [b].[Title]
+    FROM [Books] AS [b]
+    WHERE @__filterQuery_0 IN (
+        SELECT [a].[FullName]
+        FROM [Book_Authors] AS [b0]
+        INNER JOIN [Authors] AS [a] ON [b0].[AuthorId] = [a].[Id]
+        WHERE [b].[Id] = [b0].[BookId]
+    )
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [t]
+INNER JOIN [Publishers] AS [p] ON [t].[PublisherId] = [p].[Id]
+LEFT JOIN (
+    SELECT [a0].[FullName], [b1].[BookId], [b1].[AuthorId], [a0].[Id]
+    FROM [Book_Authors] AS [b1]
+    INNER JOIN [Authors] AS [a0] ON [b1].[AuthorId] = [a0].[Id]
+) AS [t0] ON [t].[Id] = [t0].[BookId]
+ORDER BY [t].[Id], [p].[Id], [t0].[BookId], [t0].[AuthorId]
+2026-10-06 10:37:57.044 +07:00 [INF] Finished GetAllBook request with data []
+2026-10-06 10:37:57.052 +07:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[LapTrinhWeb2_API.Models.DTO.BookWithAuthorAndPublisherDTO, LapTrinhWeb2_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-10-06 10:37:57.056 +07:00 [INF] Executed action LapTrinhWeb2_API.Controllers.BookController.GetAll (LapTrinhWeb2_API) in 3298.0625ms
+2026-10-06 10:37:57.062 +07:00 [INF] Executed endpoint 'LapTrinhWeb2_API.Controllers.BookController.GetAll (LapTrinhWeb2_API)'
+2026-10-06 10:37:57.066 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7233/api/Book/Get-all-books?filterOn=author&filterQuery=N&pageNumber=1&pageSize=100 - 200 null application/json; charset=utf-8 3431.0793ms

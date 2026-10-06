@@ -1,0 +1,14 @@
+2026-10-06 10:42:26.050 +07:00 [INF] User profile is available. Using 'C:\Users\anhthu632\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-10-06 10:42:26.419 +07:00 [INF] Now listening on: https://localhost:7233
+2026-10-06 10:42:26.446 +07:00 [INF] Now listening on: http://localhost:5191
+2026-10-06 10:42:26.519 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-10-06 10:42:26.734 +07:00 [INF] Hosting environment: Development
+2026-10-06 10:42:26.750 +07:00 [INF] Content root path: C:\LapTrinhWeb2_API\LapTrinhWeb2_API\LapTrinhWeb2_API
+2026-10-06 10:42:28.179 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7233/swagger/index.html - null null
+2026-10-06 10:42:29.158 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7233/swagger/index.html - 200 null text/html;charset=utf-8 977.174ms
+2026-10-06 10:42:29.229 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7233/_framework/aspnetcore-browser-refresh.js - null null
+2026-10-06 10:42:29.230 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7233/_vs/browserLink - null null
+2026-10-06 10:42:29.390 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7233/_framework/aspnetcore-browser-refresh.js - 200 16517 application/javascript; charset=utf-8 156.8637ms
+2026-10-06 10:42:29.466 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7233/_vs/browserLink - 200 null text/javascript; charset=UTF-8 235.8427ms
+2026-10-06 10:42:29.533 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7233/swagger/v1/swagger.json - null null
+2026-10-06 10:42:29.893 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7233/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 354.3188ms

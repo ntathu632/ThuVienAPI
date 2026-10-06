@@ -1,0 +1,26 @@
+2026-10-05 10:14:10.906 +07:00 [INF] Request starting HTTP/1.1 POST https://localhost:7233/api/User/Login - application/json; charset=utf-8 55
+2026-10-05 10:14:10.926 +07:00 [INF] Executing endpoint 'WebAPI_simple.Controllers.UserController.Login (LapTrinhWeb2_API)'
+2026-10-05 10:14:10.931 +07:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LapTrinhWeb2_API.Models.DTO.LoginRequestDTO) on controller WebAPI_simple.Controllers.UserController (LapTrinhWeb2_API).
+2026-10-05 10:14:10.972 +07:00 [INF] Executed DbCommand (24ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2026-10-05 10:14:11.061 +07:00 [INF] Executed DbCommand (10ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-10-05 10:14:11.064 +07:00 [INF] Executing OkObjectResult, writing value of type 'WebAPI_simple.Models.DTO.LoginResponseDTO'.
+2026-10-05 10:14:11.066 +07:00 [INF] Executed action WebAPI_simple.Controllers.UserController.Login (LapTrinhWeb2_API) in 127.9947ms
+2026-10-05 10:14:11.069 +07:00 [INF] Executed endpoint 'WebAPI_simple.Controllers.UserController.Login (LapTrinhWeb2_API)'
+2026-10-05 10:14:11.071 +07:00 [INF] Request finished HTTP/1.1 POST https://localhost:7233/api/User/Login - 200 null application/json; charset=utf-8 165.0511ms
+2026-10-05 10:14:11.081 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:7233/api/Book/get-all-books?filterOn=&filterQuery=&sortBy=&isAscending=True - null null
+2026-10-05 10:14:11.088 +07:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Read)
+2026-10-05 10:14:11.090 +07:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2026-10-05 10:14:11.091 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:7233/api/Book/get-all-books?filterOn=&filterQuery=&sortBy=&isAscending=True - 403 0 null 9.6168ms
+2026-10-05 10:14:16.274 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:7233/api/Book/get-all-books?filterOn=&filterQuery=&sortBy=&isAscending=True - null null
+2026-10-05 10:14:16.282 +07:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Read)
+2026-10-05 10:14:16.282 +07:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2026-10-05 10:14:16.284 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:7233/api/Book/get-all-books?filterOn=&filterQuery=&sortBy=&isAscending=True - 403 0 null 10.1336ms

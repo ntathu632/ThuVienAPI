@@ -18,7 +18,11 @@
     <input type="submit" value="Search"/>
 </form>
 
-<a class="btn btn-primary" asp-controller="Books" asp-action="addBook">Add new book</a>
+@{ var canWrite = User.IsInRole("Write"); }
+@if (canWrite)
+{
+    <a class="btn btn-primary" asp-controller="Books" asp-action="addBook">Add new book</a>
+}
 <table class="table">
     <tr>
         <th>Id code</th>
@@ -27,8 +31,8 @@
         <th>Publisher</th>
         <th>Rating</th>
         <th>Detail</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        @if (canWrite) { <th>Edit</th> }
+        @if (canWrite) { <th>Delete</th> }
     </tr>
 @foreach (var item in Model){
     <tr>
@@ -43,8 +47,10 @@
                 }
         </td>
         <td> <a asp-area="" asp-controller="Books" asp-action="listBook" asp-route-id="@item.Id">Detail</a></td>
+        @if (canWrite) {
         <td> <a asp-area="" asp-controller="Books" asp-action="editBook" asp-route-id="@item.Id">Edit</a></td>
         <td> <a asp-area="" asp-controller="Books" asp-action="delBook" asp-route-id="@item.Id">Delete</a></td>
+        }
     </tr>
 }
 

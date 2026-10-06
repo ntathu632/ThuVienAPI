@@ -1,0 +1,11 @@
+2026-10-05 10:11:53.257 +07:00 [INF] Request starting HTTP/1.1 POST https://localhost:7233/api/User/Login - application/json; charset=utf-8 53
+2026-10-05 10:11:53.290 +07:00 [INF] Executing endpoint 'WebAPI_simple.Controllers.UserController.Login (LapTrinhWeb2_API)'
+2026-10-05 10:11:53.297 +07:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LapTrinhWeb2_API.Models.DTO.LoginRequestDTO) on controller WebAPI_simple.Controllers.UserController (LapTrinhWeb2_API).
+2026-10-05 10:11:53.363 +07:00 [INF] Executed DbCommand (36ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2026-10-05 10:11:53.368 +07:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2026-10-05 10:11:53.371 +07:00 [INF] Executed action WebAPI_simple.Controllers.UserController.Login (LapTrinhWeb2_API) in 69.8407ms
+2026-10-05 10:11:53.373 +07:00 [INF] Executed endpoint 'WebAPI_simple.Controllers.UserController.Login (LapTrinhWeb2_API)'
+2026-10-05 10:11:53.374 +07:00 [INF] Request finished HTTP/1.1 POST https://localhost:7233/api/User/Login - 400 null text/plain; charset=utf-8 118.1157ms

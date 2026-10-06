@@ -37,6 +37,14 @@ namespace LapTrinhWeb2_API.Repositories
                 {
                     allBooks = allBooks.Where(x => x.Title.Contains(filterQuery));
                 }
+                else if (filterOn.Equals("author", StringComparison.OrdinalIgnoreCase))
+                {
+                    allBooks = allBooks.Where(b => b.AuthorNames.Any(n => n.Contains(filterQuery)));
+                }
+                else if (filterOn.Equals("publisher", StringComparison.OrdinalIgnoreCase))
+                {
+                    allBooks = allBooks.Where(c => c.PublisherName.Contains(filterQuery));
+                }
             }
             //sorting
             if (string.IsNullOrWhiteSpace(sortBy) == false)
